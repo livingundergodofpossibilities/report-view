@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>LUGOP Report Portal</title>
+    <title>LUGOP Visionary Portal</title>
     <style>
         html, body {
             margin: 0;
@@ -23,24 +23,24 @@
 </head>
 <body>
 
-    <iframe id="reportIframe" src="" allow="geolocation; microphone; camera"></iframe>
+    <iframe id="portalIframe" src="" allow="geolocation; microphone; camera"></iframe>
 
     <script>
-        // Get school from URL parameter
+        // 1. Get the 'school' parameter from the GitHub URL
         const urlParams = new URLSearchParams(window.location.search);
         const schoolCode = urlParams.get('school');
 
-        // Report Portal Base Script URL
+        // 2. Your Base Google Apps Script Exec URL
         const scriptBaseUrl = "https://script.google.com/macros/s/AKfycbwwSN3nPb9BTtblvnsPaG_r2WIAezI0L045IGvucUJ9h6WLiZkcfEiTqUCd6BSeFcm_/exec";
 
-        // Build final URL
-        let finalUrl = scriptBaseUrl;
+        // 3. Build final URL with school parameter
+        let finalScriptUrl = scriptBaseUrl;
         if (schoolCode) {
-            finalUrl += "?school=" + encodeURIComponent(schoolCode);
+            finalScriptUrl += "?school=" + encodeURIComponent(schoolCode);
         }
 
-        // Load in iframe
-        document.getElementById('reportIframe').src = finalUrl;
+        // 4. Load inside iframe
+        document.getElementById('portalIframe').src = finalScriptUrl;
     </script>
 
 </body>
