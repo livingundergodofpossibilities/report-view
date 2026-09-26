@@ -26,21 +26,14 @@
     <iframe id="portalIframe" src="" allow="geolocation; microphone; camera"></iframe>
 
     <script>
-        // 1. Get the 'school' parameter from the GitHub URL
-        const urlParams = new URLSearchParams(window.location.search);
-        const schoolCode = urlParams.get('school');
-
-        // 2. Your Base Google Apps Script Exec URL
+        // 1. Base Google Apps Script URL
         const scriptBaseUrl = "https://script.google.com/macros/s/AKfycbwwSN3nPb9BTtblvnsPaG_r2WIAezI0L045IGvucUJ9h6WLiZkcfEiTqUCd6BSeFcm_/exec";
 
-        // 3. Build final URL with school parameter
-        let finalScriptUrl = scriptBaseUrl;
-        if (schoolCode) {
-            finalScriptUrl += "?school=" + encodeURIComponent(schoolCode);
-        }
+        // 2. Grab full query string from URL (e.g., ?school=bangula&name=John&class=Form+4...)
+        const currentParams = window.location.search;
 
-        // 4. Load inside iframe
-        document.getElementById('portalIframe').src = finalScriptUrl;
+        // 3. Attach parameters to iframe URL
+        document.getElementById('portalIframe').src = scriptBaseUrl + currentParams;
     </script>
 
 </body>
